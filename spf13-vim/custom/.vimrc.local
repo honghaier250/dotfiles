@@ -33,7 +33,7 @@ if has("cscope")
     set csverb
 endif
 
-let g:spf13_bundle_groups=['general', 'writing', 'neocomplcache', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc', 'YouCompleteMe', ]
+let g:spf13_bundle_groups=['general', 'writing', 'neocomplcache', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc', ]
 
 " 禁止自动移除空格
 let g:spf13_keep_trailing_whitespace = 1

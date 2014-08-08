@@ -81,3 +81,6 @@ d{motion}       delete text that {motion} moves over
 
 将连续的两个空行替换成一个空行：
 :%s/\n\n/\r/g
+
+远程编辑
+vim scp://root@192.168.41.83//kssl/WEBUI/www/ssl/log_format.php
