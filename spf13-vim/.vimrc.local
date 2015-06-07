@@ -3,6 +3,13 @@ set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
 
+" 取消提示：“请按 ENTER 或其它命令继续”
+set shortmess=atI
+set nomore
+
+" 设置使用鼠标复制内容到剪切板
+set mouse=v
+
 " molokai配色方案
 "colorscheme molokai
 set background=dark 
