@@ -1,0 +1,32 @@
+" 解决中文乱码
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+
+" 取消提示：“请按 ENTER 或其它命令继续”
+set shortmess=atI
+set nomore
+
+" 设置使用鼠标复制内容到剪切板
+set mouse=v
+
+" molokai配色方案
+"colorscheme molokai
+set background=dark 
+
+if has("cscope")
+    set csprg=/usr/local/bin/cscope
+    set csto=0
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+         cs add cscope.out
+    " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+    set csverb
+endif
+
+let g:spf13_bundle_groups=['general', 'writing', 'neocomplcache', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc', 'YouCompleteMe', ]

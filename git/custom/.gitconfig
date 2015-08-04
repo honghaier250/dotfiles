@@ -1,0 +1,8 @@
+[user]
+	name = hehongjie
+	email = hehj@koal.com
+[core]
+	editor = vim
+[color]
+	status = auto
+    diff = auto
