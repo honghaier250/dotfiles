@@ -45,7 +45,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git autojump)
 
 # User configuration
 
@@ -79,5 +79,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+
+#配置tmux
 alias tmux="tmux -2"
+
+#配置vim
 alias vi="vim"
+
+#配置cheat
+export EDITOR=/usr/bin/vim
+export CHEATCOLORS=true
+

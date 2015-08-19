@@ -1,0 +1,10 @@
+#生成配置
+hrp2ctl config scaffold forward
+
+#转换配置
+hrp2ctl config convert --instanceids id
+
+#启动服务
+hrp2ctl service start  --instanceids id
+
+
