@@ -192,8 +192,8 @@ define dump_bucket_ex
         end
         set $datalen = $bucket->length
         if $datalen > 17
-            printmem $data 17
-            printf "..."
+            printmem $data 30
+            #printf "..."
             set $datalen = 20
         else
             printmemn $data $datalen
