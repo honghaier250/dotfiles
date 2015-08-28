@@ -333,6 +333,19 @@ document dump_servers
     Print server_rec list info
 end
 
+define dump_request_rec
+    set $r = $arg0
+    set $i
+    while $r
+        printf "r=(0x%lx): uri=%s,method=%s, filename=%s, handler=%s, r->main=0x%lx\n", \
+          $r, $r->unparsed_uri, $r->method,  $r->filename, $r->handler ? $r->handler : "(none)", $r->main
+        set $r = $r->main
+    end
+end
+document dump_request_rec
+    Print request_rec info
+end
+
 define dump_request_tree
     set $r = $arg0
     set $i
@@ -341,7 +354,7 @@ define dump_request_tree
           $r, $r->unparsed_uri, $r->handler ? $r->handler : "(none)", $r->main
         set $r = $r->main
     end
-end        
+end
 
 define dump_allocator
     printf "Allocator current_free_index = %d, max_free_index = %d\n", \
