@@ -81,7 +81,7 @@ source $ZSH/oh-my-zsh.sh
 #
 
 #配置tmux
-alias tmux="tmux -2 new -s session"
+alias tmux="tmux -2 new -s"
 
 #配置vim
 alias vi="vim"
