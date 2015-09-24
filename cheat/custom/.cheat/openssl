@@ -1,0 +1,67 @@
+# To create a 2048-bit private key:
+openssl genrsa -out server.key 2048
+
+# To create the Certificate Signing Request (CSR):
+openssl req -new -key server.key -out server.csr
+
+# To sign a certificate using a private key and CSR:
+openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+
+# (The above commands may be run in sequence to generate a self-signed SSL certificate.)
+
+# To show certificate information for a certificate signing request
+openssl req -text -noout -in server.csr
+
+# To show certificate information for generated certificate
+openssl x509 -text -noout -in server.crt 
+
+# To view certificate expiration:
+echo | openssl s_client -connect <hostname>:443 2> /dev/null | \
+awk '/-----BEGIN/,/END CERTIFICATE-----/' | \
+openssl x509 -noout -enddate
+
+# to verify dynamic engine 
+openssl engine -vvvv dynamic \
+-pre SO_PATH:/root/workspace/jdevp/build/libengine_sample.so \
+-pre ID:sample \
+-pre LOAD
+
+# to create RSA Certificate
+openssl req -newkey rsa:1024 -keyout rsa_site_prikey.key -passout pass:"123456" -config siteOpenssl.cnf -new -out rsa_site_cert.req
+openssl req -x509 -newkey rsa:1024 -keyout rsa_ca_prikey.key -passout pass:"123456" -config caOpenssl.cnf -new -out rsa_ca_cert.pem
+openssl x509 -req -in rsa_site_cert.req -CA rsa_ca_cert.pem -CAkey rsa_ca_prikey.key -out rsa_site_cert.pem -CAcreateserial -days 365 -passin pass:"123456"
+
+openssl genrsa -des -passout pass:"123456" -out rsa_ca_prikey.key 1024
+openssl req -config caOpenssl.cnf -key rsa_ca_prikey.key -passin pass:"123456" -new -out rsa_ca_cert.req
+openssl x509 -req -in rsa_ca_cert.req -signkey rsa_ca_prikey.key -passin pass:"123456" -out rsa_ca_cert.pem
+
+openssl genrsa -des -passout pass:"123456" -out rsa_site_prikey.key 1024
+openssl req -config siteOpenssl.cnf -key rsa_site_prikey.key -passin pass:"123456" -new -out rsa_site_cert.req
+openssl x509 -req -in rsa_site_cert.req -CA rsa_ca_cert.pem -CAkey rsa_ca_prikey.key -passin pass:"123456" -out rsa_site_cert.pem -CAcreateserial
+
+# to create ECC Certificate
+openssl ecparam -genkey -name prime256v1 -out ecc_ca_prikey.key 
+openssl req -config caOpenssl.cnf -key ecc_ca_prikey.key -new -out ecc_ca_cert.req
+openssl x509 -req -in ecc_ca_cert.req -signkey ecc_ca_prikey.key -out ecc_ca_cert.pem
+
+openssl ecparam -genkey -name prime256v1 -out ecc_site_prikey.key 
+openssl req -config siteOpenssl.cnf -key ecc_site_prikey.key -new -out ecc_site_cert.req
+openssl x509 -req -in ecc_site_cert.req -CA ecc_ca_cert.pem -CAkey ecc_ca_prikey.key -out ecc_site_cert.pem -CAcreateserial
+
+# to create DSA Certificate
+openssl dsaparam -genkey 512 -out dsa_ca_prikey.key
+openssl req -config caOpenssl.cnf -key dsa_ca_prikey.key -new -out dsa_ca_cert.req
+openssl x509 -req -in dsa_ca_cert.req -signkey dsa_ca_prikey.key -out dsa_ca_cert.pem
+
+openssl dsaparam -genkey 512 -out dsa_site_prikey.key
+openssl req -config siteOpenssl.cnf -key dsa_site_prikey.key -new -out dsa_site_cert.req
+openssl x509 -req -in dsa_site_cert.req -CA dsa_ca_cert.pem -CAkey dsa_ca_prikey.key -out dsa_site_cert.pem -CAcreateserial
+
+#从证书中提取公钥
+openssl x509 -in site_cert.pem -pubkey -noout > site_pubkey.key
+
+#从证书中提取证书请求文件
+openssl x509 -x509toreq -in site_cert.pem -out site_cert.req -signkey site_prikey.key -passin pass:"123456"
+
+# to verify Certificate
+openssl verify -CAfile certself.pem certuser.pem
