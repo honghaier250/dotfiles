@@ -88,5 +88,5 @@ alias vi="vim"
 
 #配置cheat
 export EDITOR=/usr/bin/vim
-export CHEATCOLORS=true
+export CHEATCOLORS=TRUE
 
