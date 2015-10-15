@@ -65,3 +65,7 @@ openssl x509 -x509toreq -in site_cert.pem -out site_cert.req -signkey site_prike
 
 # to verify Certificate
 openssl verify -CAfile certself.pem certuser.pem
+
+#SSL握手
+openssl s_server -accept 2009 -key server_prikey.key -cert server_cert.pem
+openssl s_server -accept 2009 -key client_prikey.key -cert client_cert.pem
