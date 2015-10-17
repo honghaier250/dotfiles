@@ -1,0 +1,8 @@
+# To create a symlink:
+ln -s path/to/the/target/directory name-of-symlink
+
+# Symlink, while overwriting existing destination files
+ln -sf /some/dir/exec /usr/bin/exec
+
+# 批量创建头文件链接
+ln -s `find ../src/ -name "*.h" | xargs ls` ./
