@@ -6,6 +6,7 @@ Ctrl-b d
 
 # Restore tmux session:
 tmux attach
+tmux a -t $session_name
 
 # Detach an already attached session (great if you are moving devices with different screen resolutions)
 tmux attach -d 
@@ -49,3 +50,21 @@ Ctrl-b %
 
 # Split windows vertically:
 Ctrl-b "
+
+#更换pane排版
+Ctrl+b “空格”
+
+Ctrl-A 相当于HOME键，用于将光标定位到本行最前面
+Ctrl-E 相当于End键，即将光标移动到本行末尾
+Ctrl-B 相当于左箭头键，用于将光标向左移动一格
+Ctrl-F 相当于右箭头键，用于将光标向右移动一格
+Ctrl-H 删除光标左侧的一个字符
+Ctrl-D 相当于Del键，即删除光标所在处的字符
+Ctrl-K 用于删除从光标处开始到结尾处的所有字符
+Ctrl-U 用于删除从光标开始到行首的所有字符。一般在密码或命令输入错误时常用
+Ctrl-W 用于删除当前光标左侧的一个单词
+Ctrl-L 清屏，相当于clear命令
+Ctrl-R 进入历史命令查找状态，然后你输入几个关键字符，就可以找到你使用过的命令
+Ctrl-P 相当于上箭头键，即显示上一个命令
+Ctrl-N 相当于下箭头键，即显示下一个命令
+
