@@ -63,6 +63,12 @@ openssl x509 -in site_cert.pem -pubkey -noout > site_pubkey.key
 #从证书中提取证书请求文件
 openssl x509 -x509toreq -in site_cert.pem -out site_cert.req -signkey site_prikey.key -passin pass:"123456"
 
+# 去除私钥文件密码
+openssl rsa -in prikey.key -out prikey.key
+
+# # 证书格式转换
+openssl x509 -outform DER -in site_cert.der -out site_cert.pem
+
 # to verify Certificate
 openssl verify -CAfile certself.pem certuser.pem
 

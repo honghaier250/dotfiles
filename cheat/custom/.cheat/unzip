@@ -1,0 +1,14 @@
+# Extract archive
+unzip archive.zip
+
+# Extract archive to a special directory
+unzip archive.zip -d directory
+
+# Extract archive to a special directory , not over the same original file
+unzip archive.zip -dn directory
+
+# Test integrity of archive
+unzip -tq archive.zip
+
+# List files and directories in a file
+unzip -lv archive.zip

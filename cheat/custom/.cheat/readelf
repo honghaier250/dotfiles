@@ -1,0 +1,12 @@
+# program headers
+readelf -l string.o
+
+# Section Headers
+readelf -S string.o
+
+# Symbol table
+readelf -s string.o
+
+# Section content
+readelf -p SectionName string.o
+

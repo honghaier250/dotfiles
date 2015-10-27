@@ -1,0 +1,30 @@
+# 显示文件头信息
+objdump -f test  
+
+# 显示Section Header信息
+objdump -h test  
+
+# 显示全部Header信息
+objdump -x test  
+
+# 显示全部Header信息，并显示对应的十六进制文件代码
+objdump -s test  
+
+# 输出目标文件的符号表
+objdump -t obj
+
+# 输出目标文件的所有段概述
+objdump -h obj
+
+# 反汇编test中的需要执行指令的那些section
+objdump -d test 
+
+# 反汇编test中的所有section
+objdump -D test 
+
+# 反汇编出源码(指定section)
+objdump -Slj .text obj
+
+# 对任意二进制文件进行反汇编
+objdump -D -b binary -m i386 a.bin
+

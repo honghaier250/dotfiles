@@ -1,0 +1,26 @@
+# 将文件转换成S-record格式
+objcopy -O srec main main.srec
+
+# 将文件转换成rawbinary格式
+objcopy -O binary main main.bin
+
+# 生成一个不含重定位以及标号目标文件
+objcopy -S main main.stripall
+
+# 删除指定名称的节
+objcopy -R .comment main main.remove
+
+# 添加一个自定义的节到可执行文件
+objcopy --add-section mysection=hello main.add
+
+# 将指定的段拷贝出来
+objcopy -j mysection main.add section_hello
+
+# 生成调试信息文件
+objcopy --only-keep-debug main main.debuginfo
+
+# 生成不含调试信息的可执行文件
+objcopy --strip-debug main main.stripdebug
+
+# 为不含调试信息的可执行文件添加调试信息
+objcopy --add-gnu-debuglink=main.debuginfo main.stripdebug

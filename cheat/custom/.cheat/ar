@@ -1,0 +1,23 @@
+# Create archive file
+ar -rcs *.a *.o
+
+# List object file in the archive
+ar -t *.a
+
+# Add object file to the archive
+ar -qs *.a *.o
+
+# Replace and Update object file to the archive
+ar -rus *.a *.o
+ar -rus -a memberA.0 *.a memberB.o
+
+# Delete object file from the archive
+ar -ds *.a *.o
+
+# Extract file(s) from the archive
+ar -xo *.a
+ar -xo *.a *.o
+
+# Sort object file in the archive
+ar -ms -a memberA.0 *.a memberB.o
+ar -ms -b memberA.0 *.a memberB.o
