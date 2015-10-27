@@ -1,0 +1,2 @@
+# RPM打包
+fpm -s dir -t rpm --prefix=/usr/local/ssl --epoch 2 -n openssl-koal -v devel_1.0.1p -a native -C /usr/local/ssl --after-install /usr/local/ssl/cnf/postinst -p /root/workspace/openssl-koal
