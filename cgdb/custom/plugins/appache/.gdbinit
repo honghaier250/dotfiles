@@ -1,5 +1,6 @@
 # gdb macros which may be useful for folks using gdb to debug
 # apache.  Delete it if it bothers you.
+source /root/.dotfiles/cgdb/custom/plugins/appache/breakpoint_for_hrp2
 
 define dump_table
     set $t = (apr_table_entry_t *)((apr_array_header_t *)$arg0)->elts
@@ -192,7 +193,7 @@ define dump_bucket_ex
         end
         set $datalen = $bucket->length
         if $datalen > 17
-            printmem $data 30
+            printmem $data 150
             #printf "..."
             set $datalen = 20
         else
