@@ -28,8 +28,12 @@ c, continue
 q, quit
 
 # multi threads
+set scheduler-locking off|on|step
 info threads
 thread <threads number>
+break thread_test.c:123 thread all
+thread apply ID1 ID2 command
+thread apply all command
 
 # multi process
 set follow-fork-mode parent
@@ -45,3 +49,8 @@ set print union
 #
 show convenience
 set $name=value
+
+# start non-stop mode
+set target-async 1
+set pagination off
+set non-stop on

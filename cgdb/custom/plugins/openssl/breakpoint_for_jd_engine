@@ -48,4 +48,14 @@ b kkey_pub_print
 b kkey_security_bits
 b old_kkey_priv_decode
 b old_kkey_priv_encode
+b bind_helper
+b bind_sample
+b register_sample
+b ample_ctrl
+b sample_destroy
+b sample_finish
+b sample_init
+b sample_pkey_asn1_meths
+b sample_pkey_meths
+b set_SAMPLE_LIBNAME
 
