@@ -1,0 +1,26 @@
+[global_config]
+[keybindings]
+[profiles]
+  [[default]]
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#1e90ff:#cd00cd:#00cdcd:#e5e5e5:#4c4c4c:#ff0000:#00ff00:#ffff00:#4682b4:#ff00ff:#00ffff:#ffffff"
+    visible_bell = True
+    scrollback_lines = 1000
+    use_system_font = False
+    cursor_color = "#fafafa"
+    foreground_color = "#ffffff"
+    icon_bell = False
+    show_titlebar = False
+    font = DejaVu Sans Mono 10
+    scrollback_infinite = True
+[layouts]
+  [[default]]
+    [[[child1]]]
+      profile = default
+      type = Terminal
+      parent = window0
+    [[[window0]]]
+      type = Window
+      parent = ""
+      size = 1020, 600
+      position = 300:100
+[plugins]

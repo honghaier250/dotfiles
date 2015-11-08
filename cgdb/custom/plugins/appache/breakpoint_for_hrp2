@@ -13,7 +13,7 @@ b ap_read_request
 b read_request_line
 b ap_rgetline_core
 b ap_get_mime_headers_core
-
+b tunnel_post_read_request
 
 # 请求处理
 b ap_process_async_request
@@ -34,6 +34,7 @@ b proxy_run_scheme_handler
 b proxy_run_pre_proxy_request
 b proxy_run_post_proxy_request
 b ap_proxy_http_process_responce
+b ap_send_error_responce
 
 # 访问日志
 b ap_process_request_after_handler
@@ -46,3 +47,6 @@ b config_log_transaction
 b check_pipeline
 b ssl_io_filter_input
 b ssl_io_filter_handshake
+
+b tunnel_io_filter_input
+b tunnel_io_filter_output
