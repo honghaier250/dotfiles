@@ -1,6 +1,16 @@
 # gdb macros which may be useful for folks using gdb to debug
 # openssl.  Delete it if it bothers you.
+directory /root/card/PlxSdk/Linux/PlxApi
 source /root/.dotfiles/cgdb/custom/plugins/openssl/breakpoint_for_jd_engine
+
+define dump_bio
+    set $i = $arg0
+
+    print *((BUF_MEM *)$i->ptr)
+end
+document dump_bio
+    Print the bio.
+end
 
 define dump_x509
     set $i = $arg0

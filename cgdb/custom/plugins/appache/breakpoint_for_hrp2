@@ -48,5 +48,9 @@ b check_pipeline
 b ssl_io_filter_input
 b ssl_io_filter_handshake
 
+# 输入过滤链
 b tunnel_io_filter_input
+b ssl_io_filter_input
+
+# 输出过滤链
 b tunnel_io_filter_output

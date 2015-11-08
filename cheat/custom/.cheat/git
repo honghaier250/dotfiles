@@ -125,6 +125,13 @@ git add .
 git commit
 git push -u origin master
 
+# merge branch
+git merge develop
+git status
+git add/rm
+git commit
+git push
+
 # solve git merge conflict
 git stash
 git pull
@@ -133,4 +140,9 @@ git stash pop
 git reset --hard
 git pull
 
-
+# tag
+git tag
+git tag -a v0.0.0.1
+git tag -d v0.0.0.1
+git show v0.0.0.1
+git push origin v0.0.0.1
