@@ -1,0 +1,23 @@
+#显示当前使用的Python
+pyenv versions
+
+#显示当前Python的安裝路径
+pyenv which python
+
+#设置默认的Python版本
+pyenv global
+
+#在当前路径创建一个.python-version，以后进入这个目录自动切换为该版本
+pyenv local
+
+#在当前shell的session中启用某个Python版本，优先级高于global,local
+pyenv shell
+
+#安装指定Python版本
+pyenv install -v 2.7.3
+
+#卸载指定Python 版本
+pyenv uninstall -v 2.7.3
+
+#安装/卸载完成之后需要对数据库进行更新
+pyenv rehash

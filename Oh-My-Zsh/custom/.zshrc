@@ -90,3 +90,7 @@ alias vi="vim"
 export EDITOR=/usr/bin/vim
 export CHEATCOLORS=TRUE
 
+#配置pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
