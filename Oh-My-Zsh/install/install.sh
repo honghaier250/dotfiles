@@ -1,3 +1,9 @@
+#!/bin/sh
+
+DepName=zsh
+DepPkg=zsh-4.3.10-7.1.ky3.x86_64.rpm
+DepPkgPath=/root/.dotfiles/Oh-My-Zsh/srcpkg/
+
 set -e
 
 if [ ! -n "$ZSH" ]; then
@@ -5,8 +11,19 @@ if [ ! -n "$ZSH" ]; then
 fi
 
 if [ -d "$ZSH" ]; then
-  echo "\033[0;33mYou already have Oh My Zsh installed.\033[0m You'll need to remove $ZSH if you want to install"
+  echo "You already have Oh My Zsh installed.[0m You'll need to remove $ZSH if you want to install"
   exit
+fi
+
+#离线安装依赖包
+if [ !$DepPkg  ];then
+    cd $DepPkgPath && rpm -ivh $DepPkg
+    #判断是否成功安装
+    if [ $?==0 ]; then
+        echo -e "Install Success: `rpm -qa | grep $DepName`\n"
+    else
+        echo -e "Install Failed: $DepPkg\n"
+    fi
 fi
 
 echo "\033[0;34mCloning Oh My Zsh...\033[0m"

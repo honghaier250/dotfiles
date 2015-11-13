@@ -90,3 +90,5 @@ alias vi="vim"
 export EDITOR=/usr/bin/vim
 export CHEATCOLORS=TRUE
 
+#配置java
+export JAVA_HOME=/usr/bin/java
