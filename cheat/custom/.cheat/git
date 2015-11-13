@@ -52,8 +52,11 @@ git push git@github.com:username/project.git
 # To create develop branch 
 git checkout -b develop master
 
-# To delete the branch "branch_name"
+# To delete the local branch "branch_name"
 git branch -D branch_name
+
+# To delete the remote branch "branch_name"
+git push origin :branch_name
 
 # To make an exisiting branch track a remote branch
 git branch -u upstream/foo
