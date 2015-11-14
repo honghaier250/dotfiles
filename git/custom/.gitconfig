@@ -6,3 +6,5 @@
 [color]
 	status = auto
     diff = auto
+#[diff]
+#    external = /root/.dotfiles/colordiff/custom/custom.sh

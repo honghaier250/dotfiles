@@ -22,6 +22,8 @@
 
 /root/.dotfiles/ctags/install/install.sh
 
+/root/.dotfiles/colordiff/install/install.sh
+
 /root/.dotfiles/Oh-My-Zsh/install/install.sh
 
 /root/.dotfiles/spf13-vim/install/spf13-vim.sh
