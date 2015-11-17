@@ -35,4 +35,4 @@ curl http://ifconfig.me/all/json
 curl --limit-rate 1000B -O http://path.to.the/file
 
 # Test Servlet
-curl -I -H PL:"MAC=74de2b32f13d;IP=192.168.0.55" -H PU:"SN=123456789" http://192.168.0.50/GatewayServlet
+curl -v -I -H PL:"MAC=74de2b32f13d;IP=192.168.0.5" -H PU:"SN=37152E717B1D145DC6C1F831" -H PR:"granularity=uri;granularity=service;granularity=network;uri=http://192.168.1.140:8080/" http://192.168.0.250/PMScheck
