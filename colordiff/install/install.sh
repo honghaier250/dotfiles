@@ -10,7 +10,7 @@ if [ `rpm -qa | grep $AppName |wc -l` -ne 0  ];then
 else
     #判断是否连网
     ping -c 1 www.baidu.com > /dev/null
-    if [ $?==0 ]; then
+    if [ $? -n 0 ]; then
         #在线安装
         if [ `rpm -qa | grep epel-release |wc -l` -ne 0  ];then
             yum install -y $AppName
