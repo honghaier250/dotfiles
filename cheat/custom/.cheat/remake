@@ -1,0 +1,7 @@
+# Starting the GNU Make debugger
+remake -X -f Makefile
+
+# Quitting the GNU Make debugger
+`quit' or `C-d'
+
+
