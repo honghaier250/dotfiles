@@ -67,7 +67,7 @@ openssl x509 -x509toreq -in site_cert.pem -out site_cert.req -signkey site_prike
 openssl rsa -in prikey.key -out prikey.key
 
 # # 证书格式转换
-openssl x509 -outform DER -in site_cert.der -out site_cert.pem
+openssl x509 -outform DER -in site_cert.pem -out site_cert.cer
 
 # to verify Certificate
 openssl verify -CAfile certself.pem certuser.pem
