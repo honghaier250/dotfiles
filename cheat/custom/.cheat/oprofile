@@ -6,6 +6,7 @@ modprobe oprofile timer=1
 # 是否对kernel进行profiling
 opcontrol --no-vmlinux
 opcontrol --separate=kernel
+opcontrol --vmlinux=/boot/vmlinux-`uname -r`
 
 # 加载模块
 opcontrol --init
