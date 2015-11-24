@@ -26,7 +26,7 @@
 
 /root/.dotfiles/Oh-My-Zsh/install/install.sh
 
-/root/.dotfiles/spf13-vim/install/spf13-vim.sh
+/root/.dotfiles/spf13-vim/install/install.sh
 
 
 
