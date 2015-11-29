@@ -1,0 +1,2 @@
+# lists  all  of  the services status
+service --status-all | less
