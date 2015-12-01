@@ -113,7 +113,7 @@ git clone --depth 1 <remote-url>
 git pull --unshallow
 
 # Create a new repository
-git clone git@git.koal.com:hehongjie/test.git
+git clone --recursive git@git.koal.com:hehongjie/test.git
 cd test
 touch README.md
 git add README.md

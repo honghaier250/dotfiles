@@ -48,6 +48,6 @@ opreport -l
 opreport -l program
 
 # 以代码的角度，针对test进程显示检测结果
-opannotate --source program
+opannotate --source program --base-dirs=XXX --search-dirs=XXX --output-dir=./tmp/ *.so
 opannotate -s /lib64/libc-2.4.so
 

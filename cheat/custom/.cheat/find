@@ -45,6 +45,7 @@ find . -type f -samefile MY_FILE_HERE 2>/dev/null
 
 # 批量删除行尾^M
 find -type f | xargs perl -pi -e 's/\r//g'
+find . -type f -name '*.txt' -exec sed -i 's/this/that/g' {} +
 
 # 批量复制目录结构
 find . -type d  | awk -F/ '{print $3}' | xargs mkdir
