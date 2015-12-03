@@ -13,14 +13,14 @@ openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 openssl req -text -noout -in server.csr
 
 # To show certificate information for generated certificate
-openssl x509 -text -noout -in server.crt 
+openssl x509 -text -noout -in server.crt
 
 # To view certificate expiration:
 echo | openssl s_client -connect <hostname>:443 2> /dev/null | \
 awk '/-----BEGIN/,/END CERTIFICATE-----/' | \
 openssl x509 -noout -enddate
 
-# to verify dynamic engine 
+# to verify dynamic engine
 openssl engine -vvvv dynamic \
 -pre SO_PATH:/root/workspace/jdevp/build/libengine_sample.so \
 -pre ID:sample \
@@ -40,11 +40,11 @@ openssl req -config siteOpenssl.cnf -key rsa_site_prikey.key -passin pass:"12345
 openssl x509 -req -in rsa_site_cert.req -CA rsa_ca_cert.pem -CAkey rsa_ca_prikey.key -passin pass:"123456" -out rsa_site_cert.pem -CAcreateserial
 
 # to create ECC Certificate
-openssl ecparam -genkey -name prime256v1 -out ecc_ca_prikey.key 
+openssl ecparam -genkey -name prime256v1 -out ecc_ca_prikey.key
 openssl req -config caOpenssl.cnf -key ecc_ca_prikey.key -new -out ecc_ca_cert.req
 openssl x509 -req -in ecc_ca_cert.req -signkey ecc_ca_prikey.key -out ecc_ca_cert.pem
 
-openssl ecparam -genkey -name prime256v1 -out ecc_site_prikey.key 
+openssl ecparam -genkey -name prime256v1 -out ecc_site_prikey.key
 openssl req -config siteOpenssl.cnf -key ecc_site_prikey.key -new -out ecc_site_cert.req
 openssl x509 -req -in ecc_site_cert.req -CA ecc_ca_cert.pem -CAkey ecc_ca_prikey.key -out ecc_site_cert.pem -CAcreateserial
 
@@ -74,4 +74,4 @@ openssl verify -CAfile certself.pem certuser.pem
 
 #SSL握手
 openssl s_server -accept 2009 -key server_prikey.key -cert server_cert.pem
-openssl s_server -accept 2009 -key client_prikey.key -cert client_cert.pem
+openssl s_client  -key client_prikey.key -cert client_cert.pem -connect 192.168.6.2:2009

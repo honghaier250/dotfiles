@@ -1,0 +1,5 @@
+# Create archive file
+rar archive.rar directory
+
+# Extract archive
+rar x archive.rar
