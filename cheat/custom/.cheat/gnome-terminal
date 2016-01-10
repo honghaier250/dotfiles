@@ -18,4 +18,7 @@ Shift+Ctrl+V:粘贴
 # 终端改变大小：
 Ctrl+plus:放大
 Ctrl+minus:减小
-Ctrl+0:原å
+Ctrl+0:还原
+
+#菜单配置
+/usr/share/applications

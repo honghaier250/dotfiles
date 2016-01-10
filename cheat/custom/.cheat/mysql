@@ -20,3 +20,6 @@ SET PASSWORD = PASSWORD('admin');
 1、修改 ~/my.cnf；
 2、在[mysqld]节点下，加入一行： lower_case_table_names=1
 3、重启MySQL即可
+
+# 查看编码
+show variables like 'char%';

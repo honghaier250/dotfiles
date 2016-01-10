@@ -1,0 +1,8 @@
+q
+add /usr/share/sounds/alsa/
+add /usr/share/iptux/sound/
+a /usr/share/iptux/sound/
+a cmus-2.2.0-4.1.x86_64.rpm
+a /root/workspace/exercise/languages/C/sound/demo/
+h
+help

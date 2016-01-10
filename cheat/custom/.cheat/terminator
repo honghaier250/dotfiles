@@ -40,4 +40,6 @@
 重置当前窗口 Ctrl+Shift+R
 当前窗口清屏 Ctrl+Shift+G
 最大化terminator F11
+最大化 Alt+F10
+最小化 Alt+F9
 退出terminator Ctrl+Shift+Q
