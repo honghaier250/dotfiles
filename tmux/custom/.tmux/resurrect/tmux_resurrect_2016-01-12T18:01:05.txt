@@ -1,0 +1,13 @@
+pane	common	1	:..ages/C/string	1	:*Z	1	:/root/workspace/exercise/languages/C/string	1	zsh	:vim strmov.c
+pane	common	1	:..ages/C/string	1	:*Z	2	:/root/.dotfiles/tmux/custom	0	zsh	:
+pane	common	1	:..ages/C/string	1	:*Z	3	:/root/.dotfiles/tmux/custom	0	zsh	:
+pane	common	1	:..ages/C/string	1	:*Z	4	:/root/.dotfiles/tmux/custom	0	zsh	:
+pane	sample	1	:vim	1	:*	1	:/root	1	vim	:vim
+pane	sample	1	:vim	1	:*	2	:/root	0	zsh	:
+pane	sample	2	:~	0	:#	1	:/root	1	zsh	:
+pane	sample	3	:~	0	:#-	1	:/root	1	zsh	:
+window	common	1	1	:*Z	811e,197x48,0,0{98x48,0,0[98x23,0,0,7,98x24,0,24,9],98x48,99,0[98x23,99,0,8,98x24,99,24,10]}
+window	sample	1	1	:*	2419,197x48,0,0{80x48,0,0,0,116x48,81,0,3}
+window	sample	2	0	:#	d03e,197x48,0,0,1
+window	sample	3	0	:#-	d03f,197x48,0,0,2
+state	common	

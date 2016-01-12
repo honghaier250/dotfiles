@@ -1,0 +1,5 @@
+pane	ok	1	:..ns/tmuxinator	1	:*Z	1	:/root/.dotfiles/tmux/custom	0	zsh	:
+pane	ok	1	:..ns/tmuxinator	1	:*Z	2	:/root/.dotfiles/tmux/custom/.tmux/plugins/tmuxinator	1	zsh	:
+pane	ok	1	:..ns/tmuxinator	1	:*Z	3	:/root/.dotfiles/tmux/custom	0	zsh	:
+window	ok	1	1	:*Z	b554,197x48,0,0[197x24,0,0,0,197x11,0,25,1,197x11,0,37,2]
+state	ok	
