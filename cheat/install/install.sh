@@ -11,6 +11,10 @@
 #
 ##安装cheat
 #cd cheat && python setup.py install
+#
+# Ubuntu
+# apt-get install python-pip
+# pip install cheat
 
 AppName=cheat
 Package=cheat

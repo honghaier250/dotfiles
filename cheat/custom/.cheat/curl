@@ -36,3 +36,9 @@ curl --limit-rate 1000B -O http://path.to.the/file
 
 # Test Servlet
 curl -v -I -H PL:"MAC=74de2b32f13d;IP=192.168.0.5" -H PU:"SN=37152E717B1D145DC6C1F831" -H PR:"granularity=uri;granularity=service;granularity=network;uri=http://192.168.1.140:8080/" http://192.168.0.250/PMScheck
+
+# Install spf13-vim
+curl https://raw.githubusercontent.com/spf13/spf13-vim/3.0/bootstrap.sh | sh
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
