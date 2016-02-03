@@ -1,4 +1,7 @@
 [global_config]
+  dbus = False
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  show_on_center = True
 [keybindings]
 [layouts]
   [[default]]
@@ -8,7 +11,8 @@
       type = Terminal
     [[[window0]]]
       parent = ""
-      position = 300:100
+      #position = 300:100
+      #position = center
       size = 1020, 600
       type = Window
 [plugins]

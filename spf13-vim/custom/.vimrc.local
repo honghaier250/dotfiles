@@ -10,6 +10,9 @@ set nomore
 " 设置使用鼠标复制内容到剪切板
 set mouse=v
 
+" 使用F5切换插入粘贴模式
+set pastetoggle=<F12><F12><F12><F5>
+
 " solarized配色方案
 syntax enable
 set background=dark

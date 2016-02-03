@@ -21,3 +21,6 @@ pyenv uninstall -v 2.7.3
 
 #安装/卸载完成之后需要对数据库进行更新
 pyenv rehash
+
+#下载缓存目标
+~/.pyenv/cache

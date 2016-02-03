@@ -1,0 +1,17 @@
+# set profile
+bzr whoami "honghaier <274914765@qq.com>"
+
+# login
+bzr launchpad-login 274914765-t
+
+# clone
+bzr branch lp:terminator
+
+# add
+bzr add .
+
+# commit
+bzr commit
+
+# push
+bzr push lp:~274914765-t/terminator/terminator
