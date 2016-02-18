@@ -1,0 +1,12 @@
+# generate template
+doxygen -g
+
+# generate document
+doxygen
+
+# doxygen style comments
+/**
+ * command line options sample code
+ * @remark Error checks omitted
+ */
+
