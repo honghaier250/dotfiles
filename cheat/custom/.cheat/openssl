@@ -26,6 +26,9 @@ openssl engine -vvvv dynamic \
 -pre ID:sample \
 -pre LOAD
 
+# to create RSA Ca (Support Chinese and Extensions)
+openssl req -newkey rsa:1024 -keyout ca_prikey.key -passout pass:"123456" -new -x509 -utf8 -config openssl_utf8.cnf -out ca_self.pem
+
 # to create RSA Certificate
 openssl req -newkey rsa:1024 -keyout rsa_site_prikey.key -passout pass:"123456" -config siteOpenssl.cnf -new -out rsa_site_cert.req
 openssl req -x509 -newkey rsa:1024 -keyout rsa_ca_prikey.key -passout pass:"123456" -config caOpenssl.cnf -new -out rsa_ca_cert.pem
