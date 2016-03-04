@@ -11,4 +11,4 @@ mount -o uid=username,gid=usergroup /dev/sdx /mnt/xxx
 mount -t nfs example.com:/remote/example/dir /local/example/dir
 
 # to mount iso mirror
-mount -t iso9660 /media/NeoKylin-3.2-64.iso /media/NeoKylin-3.2 -o loop
+mount -t iso9660 /NeoKylin-3.2-64.iso /media/NeoKylin-3.2 -o loop

@@ -7,8 +7,8 @@ DepPkg=stardict-langdao-ec-gb-2.4.2.tar.bz2
 DepPkgPath=/root/.dotfiles/sdcv/srcpkg/stardict
 
 #判断是否已安装
-if [ -f `whereis $AppName | awk '{print $2}'` ];then
-    echo -e "Already Install: $AppName\n"
+if [ `rpm -qa | grep $AppName |wc -l` -ne 0  ];then
+    echo -e "Already Install: `rpm -qa | grep $AppName`\n"
 else
     cd $Path && rpm -ivh $Package
 
