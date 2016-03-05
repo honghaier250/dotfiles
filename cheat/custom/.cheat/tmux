@@ -54,6 +54,10 @@ Ctrl-b "
 #更换pane排版
 Ctrl+b “空格”
 
+# tmux plugins manage
+Ctrl+b I
+Ctrl+b Alt+u
+
 Ctrl-A 相当于HOME键，用于将光标定位到本行最前面
 Ctrl-E 相当于End键，即将光标移动到本行末尾
 Ctrl-B 相当于左箭头键，用于将光标向左移动一格
