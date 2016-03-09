@@ -1,0 +1,2 @@
+# start service
+./xflux -l 36.0N,120.0E

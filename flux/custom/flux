@@ -1,0 +1,38 @@
+#!/bin/sh
+# chkconfig: - 150 150
+# description: flux
+# processname: flux
+
+start() {
+    xflux -l 36,120
+}
+
+status(){
+    ps -ef | grep xflux
+}
+
+stop(){
+    pkill xflux
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  status)
+    status
+	;;
+  restart)
+	stop
+	start
+	;;
+  *)
+	echo $"Usage: $prog {start|stop|restart|status}"
+	RETVAL=2
+esac
+
+exit $RETVAL

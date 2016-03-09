@@ -1,1 +1,1 @@
-ssldump -i eth0 -k private.key -p passwd -nn -d port 443
+ssldump -i eth0 -k private.key -p passwd -n -e -nn -X -A -d host 127.0.0.1 and port 443
