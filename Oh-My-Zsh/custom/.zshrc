@@ -88,7 +88,7 @@ alias tmux="tmux -2"
 alias vi="vim"
 
 #配置cheat
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/local/vim/bin/vim
 export CHEATCOLORS=TRUE
 
 #配置java
