@@ -1,8 +1,11 @@
 [user]
 	name = hehongjie
 	email = hehj@koal.com
+[color]
+	ui = true
+[diff]
+	submodule = log
 [core]
 	editor = vim
-[color]
-	status = auto
-    diff = auto
+[http]
+	sslVerify = false
