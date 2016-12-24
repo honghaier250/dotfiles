@@ -7,5 +7,6 @@
 	submodule = log
 [core]
 	editor = vim
+	quotepath = false
 [http]
 	sslVerify = false
