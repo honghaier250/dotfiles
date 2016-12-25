@@ -1,4 +1,4 @@
 make VERBOSE=1
 
 #编译debug
-cmake -DCMAKE_BUILD_TYPE=Debug .. 
+cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX="/usr/local/xxx" .. 
