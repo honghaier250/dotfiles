@@ -18,6 +18,9 @@ syntax enable
 set background=dark
 colorscheme solarized
 
+" 设置tab为两个空格
+set tabstop=2 shiftwidth=2 expandtab
+
 if has("cscope")
     set csprg=/usr/bin/cscope
     set csto=0

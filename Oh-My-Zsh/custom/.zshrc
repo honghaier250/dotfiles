@@ -50,7 +50,7 @@ plugins=(autojump dircycle dirhistory gem gitfast git-extras git-flow repo pytho
 # User configuration
 
 export PATH="/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/root/bin"
-export PATH=/usr/local/vim/bin/:/usr/local/tmux/bin:/usr/local/gdb-7.3/bin:/usr/local/bash/bin:/usr/local/libtool/bin:/usr/local/automake/bin:/usr/local/autoconf/bin:/usr/local/m4/bin:/usr/local/cmake/bin:/usr/local/python/bin:$PATH
+export PATH=/usr/local/vim/bin/:/usr/local/tmux/bin:/usr/local/gdb-7.3/bin:/usr/local/bash/bin:/usr/local/libtool/bin:/usr/local/automake/bin:/usr/local/autoconf/bin:/usr/local/m4/bin:/usr/local/cmake/bin:/usr/local/python/bin:/usr/local/netcat/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
