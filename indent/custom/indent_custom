@@ -1,6 +1,37 @@
 #!/bin/sh
 
-find . -name "*.[h,c]" -exec indent '{}' \; -o -name "*.cpp" -exec indent '{}' \;
-find . -name "*.h~" -exec rm '{}' \; -o -name "*.c~" -exec rm '{}' \; -o -name "*.cpp~" -exec rm '{}' \;
-find -name "*.[hc]" | xargs perl -pi -e 's/\t/    /g'
-find -name "*.cpp" | xargs perl -pi -e 's/\t/    /g'
+depth=$2
+
+function indent
+{
+	find . -mindepth $depth -maxdepth $depth -name "*.[h,c]" -exec indent '{}' \; -o -name "*.cpp" -exec indent '{}' \;
+	find . -mindepth $depth -maxdepth $depth -name "*.h.BAK" -exec rm '{}' \; -o -name "*.c.BAK" -exec rm '{}' \; -o -name "*.cpp.BAK" -exec rm '{}' \;
+	find . -mindepth $depth -maxdepth $depth -name "*.[hc]" | xargs perl -pi -e 's/\t/  /g'
+	find . -mindepth $depth -maxdepth $depth -name "*.cpp" | xargs perl -pi -e 's/\t/  /g'
+}
+
+usage()
+{
+	echo $"usage: $0 [option]...
+	-d       --depth                 set indent depth
+	-h,      --help                  print this help and exit
+	-v,      --version               print version information and exit
+	"
+	exit 2
+}
+
+if [ $# -eq 1 ]; then
+	usage
+fi
+
+while getopts ":dhv" c
+do
+    case $c in
+        h)  usage ;;
+        v)  echo "indent-custom-0.0.1" ;;
+        d)  indent ;;
+        \?) usage
+        exit 2
+        ;;
+    esac
+done

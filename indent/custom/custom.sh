@@ -1,5 +1,4 @@
 #!/bin/sh
 
-rm -rf ~/.indent.pro
-ln -s /root/.dotfiles/indent/custom/.indent.pro ~/.indent.pro
-cp -a /root/.dotfiles/indent/custom/indent_custom /usr/local/bin/
+ln -sf ~/.dotfiles/indent/custom/.indent.pro.kr.style ~/.indent.pro
+cp -a ~/.dotfiles/indent/custom/indent_custom /usr/local/bin/

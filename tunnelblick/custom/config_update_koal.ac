@@ -1,0 +1,16 @@
+client
+script-security 2
+dev tun
+proto udp
+remote 101.231.201.62 61195
+resolv-retry infinite
+nobind
+ca ca.pem           //公司根证书
+pkcs12 hehj.pfx     //公司个人签名证书
+tls-client
+cipher AES-128-CBC
+keepalive 10 60
+verb 5
+explicit-exit-notify
+comp-lzo no
+tls-cipher AES256-SHA //2.3.11 后的VPN需手动指定握手算法 TLS-RSA-WITH-AES-256-CBC-SHA

@@ -10,13 +10,19 @@ set nomore
 " 设置使用鼠标复制内容到剪切板
 set mouse=v
 
+" pastetoggle (sane indentation on pastes) "
+set pastetoggle=<F5>
+
 " solarized配色方案
 syntax enable
 set background=dark
 colorscheme solarized
 
+" 设置tab为两个空格
+set tabstop=2 shiftwidth=2 expandtab
+
 if has("cscope")
-    set csprg=/usr/local/bin/cscope
+    set csprg=/usr/bin/cscope
     set csto=0
     set cst
     set nocsverb
@@ -30,7 +36,10 @@ if has("cscope")
     set csverb
 endif
 
-let g:spf13_bundle_groups=['general', 'writing', 'neocomplcache', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc', 'YouCompleteMe', ]
+let g:spf13_bundle_groups=['general', 'writing', 'neocomplcache', 'programming', 'php', 'ruby', 'python', 'javascript', 'html', 'misc', ]
+
+" 禁止自动移除空格
+let g:spf13_keep_trailing_whitespace = 1
 
 " TagBar
 " {
@@ -39,3 +48,9 @@ let g:spf13_bundle_groups=['general', 'writing', 'neocomplcache', 'programming',
 "        nnoremap <silent> <leader>tt :TagbarClose<CR>
 "    endif
 " }
+
+" neocomplcache
+" {
+    let g:neocomplcache_disable_auto_complete = 1
+" }
+"
