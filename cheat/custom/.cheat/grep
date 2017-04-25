@@ -31,3 +31,11 @@ ps aux | grep -E --color 'bash|$'
 # not match binary files
 grep get_default_error_string * -rFn --binary-files=without-match
 
+# replace something
+grep -rin "LOG_DEBUG" * | awk -F: '{print $1}' | xargs sed -i 's/LOG_DEBUG/LOG_INFO/g'
+
+# delete empty line
+grep -v '^$' input.txt > output.txt
+
+# delete blank lines
+grep -v '^\s*$' input.txt > output.txt

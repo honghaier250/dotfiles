@@ -13,3 +13,5 @@ zip -d archive.zip filepath
 
 # To list, test and extract zip archives, see unzip
 cheat unzip
+
+zip -P koal111111 LiSi_Windows_5.3.7_2016_09_22_15_30_27.zip LiSi_Windows_5.3.7_2016_09_22_15_30_27.tar

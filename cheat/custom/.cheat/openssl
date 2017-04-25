@@ -75,3 +75,45 @@ openssl verify -CAfile certself.pem certuser.pem
 #SSL握手
 openssl s_server -accept 2009 -key server_prikey.key -cert server_cert.pem
 openssl s_server -accept 2009 -key client_prikey.key -cert client_cert.pem
+
+# TrustRoot
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl genrsa -out TrustRoot.key -sm4 -passout auto: 2048
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl req -key TrustRoot.key -passin auto: -new -config TrustRoot.cnf  -out  TrustRoot.req -sha256 -utf8
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl x509 -req -in TrustRoot.req -signkey TrustRoot.key -passin auto: -out TrustRoot.pem -days 7300
+
+# TrustSM2Root
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl ecparam -name CN-GM-ECC -noout -genkey -sm4 -passout auto: -out TrustSM2Root.key
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl req -key TrustSM2Root.key -passin auto: -new -config TrustSM2Root.cnf  -out  TrustSM2Root.req -sm3 -utf8
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl x509 -req -in TrustSM2Root.req -signkey TrustSM2Root.key -passin auto: -out TrustSM2Root.pem -days 7300
+
+# SSL-DemoCA
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl genrsa -out SSL-DemoCA.key -sm4 -passout auto: 2048
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl req -key SSL-DemoCA.key -passin auto: -new -config SSL-DemoCA.cnf  -out  SSL-DemoCA.req -sha256 -utf8
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl x509 -req -in SSL-DemoCA.req -signkey SSL-DemoCA.key -passin auto: -out SSL-DemoCA.pem -days 7300
+
+# www.mysite.com
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl genrsa -out www.mysite.com.key -sm4 -passout auto: 2048
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl req -key www.mysite.com.key -passin auto: -new -config www.mysite.com.cnf  -out  www.mysite.com.req -sha256 -utf8
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl x509 -req -in www.mysite.com.req  -CA TrustRoot.pem -CAkey TrustRoot.key -passin auto: -CAcreateserial -days 7300 -out www.mysite.com.pem
+
+/usr/local/ssl/bin/openssl rsa -in TrustRoot.key -passin auto: -out TrustRoot.key
+/usr/local/ssl/bin/openssl ec -in TrustSM2Root.key -passin auto: -out TrustSM2Root.key
+/usr/local/ssl/bin/openssl rsa -in SSL-DemoCA.key -passin auto: -out SSL-DemoCA.key
+
+# 构造一张与证书项相同的证书(证书序列号、证书有效期（年月日）、证书公钥、证书主题项、证书颁发者主题项)
+# 首先生成颂发者证书，保证颁发者主题项一致
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl genrsa -out KoalCa.key -sm4 -passout auto: 2048
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl req -key KoalCa.key -passin auto: -new -config KoalCa.cnf  -out  KoalCa.req -sha1 -utf8
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl x509 -req -in KoalCa.req -signkey KoalCa.key -passin auto: -out KoalCa.pem -days 7300
+# 颂发个人证书
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl genrsa -out hehj.key -sm4 -passout auto: 2048
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl req -key hehj.key -passin auto: -new -config hehj.cnf  -out hehj.req -sha1 -utf8
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl x509 -req -in hehj.req  -CA KoalCa.pem -CAkey KoalCa.key -CAserial KoalCa.srl -passin auto: -sha1 -days 1825 -out hehj.pem
+
+# TrustRoot.pem and TrustSM2Root.pem
+/usr/local/ssl/bin/openssl req -newkey rsa:2048 -keyout TrustRoot.key -passout pass:"123456" -config TrustRoot.cnf -new -out TrustRoot.req
+/usr/local/ssl/bin/openssl req -x509 -newkey rsa:2048 -keyout TrustRoot.key -passout pass:"123456" -config TrustRoot.cnf -new -out TrustRoot.pem
+/usr/local/ssl/bin/openssl x509 -req -in TrustSM2Root.req -CA localca/TrustSM2Root.cer -CAkey localca/TrustSM2Root.key -out TrustSM2Root.cer -days 7300 -CAcreateserial
+
+# training
+https://www.feistyduck.com/training/the-best-ssl-and-tls-training-in-the-world

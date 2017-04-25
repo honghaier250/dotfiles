@@ -98,3 +98,5 @@ export JAVA_HOME=/usr/bin/java
 [[ -s /root/.autojump/etc/profile.d/autojump.sh ]] && source /root/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit -u
+
+export LANG=zh_CN.UTF-8

@@ -18,3 +18,9 @@ sed ':a;N;$!ba;s/\n//g'  file.txt
 
 # To print x-y line
 sed -n 'x,yp' file.txt
+
+# delete empty line
+sed '/^$/d' input.txt > output.txt
+
+# delete blank line
+sed '/^\s*$/d' input.txt > output.txt

@@ -151,3 +151,5 @@ git tag -d v0.0.0.1
 git show v0.0.0.1
 git push origin v0.0.0.1
 
+gst | grep -ri "类型变更" | awk  '{print $2}' | xargs git checkout  --
+gst | grep -ri "删除" | awk  '{print $2}' | xargs git rm

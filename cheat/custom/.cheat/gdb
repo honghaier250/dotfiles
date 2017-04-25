@@ -19,6 +19,7 @@ bt, backtrace
 p length=strlen(string)
 p *array@arraylen
 x /nfu position
+x /16xb 0x81e5fe4
 # list surrounding source code
 l, list
 # continue execution

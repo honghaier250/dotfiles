@@ -1,56 +1,56 @@
 set breakpoint pending on
 
 # 初始化
-b process_socket
-b ap_run_create_connection
-b ap_run_pre_connection
-b ap_run_process_connection
-
-# 连接处理
-b ap_process_http_connection
-b ap_process_http_async_connection
-b ap_read_request
-b read_request_line
-b ap_rgetline_core
-b ap_get_mime_headers_core
-b tunnel_post_read_request
-
-# 请求处理
-b ap_process_async_request
-b ap_run_quick_handler
-b tunnel_quick_handler
-b ap_process_request_internal
-b ap_run_access_checker
-b pm_permission_check
-b ap_run_fixups
-
-# 业务处理
-b ap_invoke_handler
-b ap_run_handler
-b proxy_handler
-b proxy_connect_handler
-b proxy_http_handler
-b proxy_run_scheme_handler
-b proxy_run_pre_proxy_request
-b proxy_run_post_proxy_request
-b ap_proxy_http_process_responce
-b ap_send_error_responce
-
-# 访问日志
-b ap_process_request_after_handler
-b eor_bucket_destroy
-b eor_bucket_cleanup
-b multi_log_transaction
-b config_log_transaction
-
-# SSL握手
-b check_pipeline
-b ssl_io_filter_input
-b ssl_io_filter_handshake
-
-# 输入过滤链
-b tunnel_io_filter_input
-b ssl_io_filter_input
-
-# 输出过滤链
-b tunnel_io_filter_output
+#b process_socket
+#b ap_run_create_connection
+#b ap_run_pre_connection
+#b ap_run_process_connection
+#
+## 连接处理
+#b ap_process_http_connection
+#b ap_process_http_async_connection
+#b ap_read_request
+#b read_request_line
+#b ap_rgetline_core
+#b ap_get_mime_headers_core
+#b tunnel_post_read_request
+#
+## 请求处理
+#b ap_process_async_request
+#b ap_run_quick_handler
+#b tunnel_quick_handler
+#b ap_process_request_internal
+#b ap_run_access_checker
+#b pm_permission_check
+#b ap_run_fixups
+#
+## 业务处理
+#b ap_invoke_handler
+#b ap_run_handler
+#b proxy_handler
+#b proxy_connect_handler
+#b proxy_http_handler
+#b proxy_run_scheme_handler
+#b proxy_run_pre_proxy_request
+#b proxy_run_post_proxy_request
+#b ap_proxy_http_process_responce
+#b ap_send_error_responce
+#
+## 访问日志
+#b ap_process_request_after_handler
+#b eor_bucket_destroy
+#b eor_bucket_cleanup
+#b multi_log_transaction
+#b config_log_transaction
+#
+## SSL握手
+#b check_pipeline
+#b ssl_io_filter_input
+#b ssl_io_filter_handshake
+#
+## 输入过滤链
+#b tunnel_io_filter_input
+#b ssl_io_filter_input
+#
+## 输出过滤链
+#b tunnel_io_filter_output
