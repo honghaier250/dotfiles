@@ -12,3 +12,10 @@ printf '1 2 3' | awk 'BEGIN {OFS=":"}; {print $1,$2,$3}'
 
 # delete blank line
 awk NF input.txt > output.txt
+
+# date
+echo "" | awk 'BEGIN{"date +%s -d '20170619'" | getline start; "date +%s" | getline end;}{print (end-start)/86400}'
+echo "" | awk -v start="$(date +"%s" -d '20170619')" -v end="$(date +"%s")" '{print (end-start)/86400}'
+
+# 
+ping 192.168.199.1 | awk '{ print $0, strftime("%Y-%m-%d %H:%M:%S",systime())  }' >> 1.log

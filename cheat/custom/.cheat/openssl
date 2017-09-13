@@ -27,26 +27,32 @@ openssl engine -vvvv dynamic \
 -pre LOAD
 
 # to create RSA Certificate
-openssl req -newkey rsa:1024 -keyout rsa_site_prikey.key -passout pass:"123456" -config siteOpenssl.cnf -new -out rsa_site_cert.req
-openssl req -x509 -newkey rsa:1024 -keyout rsa_ca_prikey.key -passout pass:"123456" -config caOpenssl.cnf -new -out rsa_ca_cert.pem
-openssl x509 -req -in rsa_site_cert.req -CA rsa_ca_cert.pem -CAkey rsa_ca_prikey.key -out rsa_site_cert.pem -CAcreateserial -days 365 -passin pass:"123456"
+openssl req -newkey rsa:1024 -keyout client.key -passout pass:"123456" -config siteOpenssl.cnf -new -out client.req
+openssl req -x509 -newkey rsa:1024 -keyout ca.key -passout pass:"123456" -config caOpenssl.cnf -new -out ca.pem
+openssl x509 -req -in client.req -CA ca.pem -CAkey ca.key -out client.pem -CAcreateserial -days 365 -passin pass:"123456"
 
-openssl genrsa -des -passout pass:"123456" -out rsa_ca_prikey.key 1024
-openssl req -config caOpenssl.cnf -key rsa_ca_prikey.key -passin pass:"123456" -new -out rsa_ca_cert.req
-openssl x509 -req -in rsa_ca_cert.req -signkey rsa_ca_prikey.key -passin pass:"123456" -out rsa_ca_cert.pem
+openssl genrsa -des -passout pass:"123456" -out ca.key 1024
+openssl req -config caOpenssl.cnf -key ca.key -passin pass:"123456" -new -out ca.req
+openssl x509 -req -in ca.req -signkey ca.key -passin pass:"123456" -out ca.pem
 
-openssl genrsa -des -passout pass:"123456" -out rsa_site_prikey.key 1024
-openssl req -config siteOpenssl.cnf -key rsa_site_prikey.key -passin pass:"123456" -new -out rsa_site_cert.req
-openssl x509 -req -in rsa_site_cert.req -CA rsa_ca_cert.pem -CAkey rsa_ca_prikey.key -passin pass:"123456" -out rsa_site_cert.pem -CAcreateserial
+openssl genrsa -des -passout pass:"123456" -out client.key 1024
+openssl req -config siteOpenssl.cnf -key client.key -passin pass:"123456" -new -out client.req
+openssl x509 -req -in client.req -CA ca.pem -CAkey ca.key -passin pass:"123456" -out client.pem -CAcreateserial
 
 # to create ECC Certificate
-openssl ecparam -genkey -name prime256v1 -out ecc_ca_prikey.key 
-openssl req -config caOpenssl.cnf -key ecc_ca_prikey.key -new -out ecc_ca_cert.req
-openssl x509 -req -in ecc_ca_cert.req -signkey ecc_ca_prikey.key -out ecc_ca_cert.pem
+/usr/local/ssl/bin/openssl  req -x509 -newkey ec:gm.param -keyout ecc-ca.key -passout pass:"123456" -config ecc-ca.cnf -new -out ecc-ca.pem
 
-openssl ecparam -genkey -name prime256v1 -out ecc_site_prikey.key 
-openssl req -config siteOpenssl.cnf -key ecc_site_prikey.key -new -out ecc_site_cert.req
-openssl x509 -req -in ecc_site_cert.req -CA ecc_ca_cert.pem -CAkey ecc_ca_prikey.key -out ecc_site_cert.pem -CAcreateserial
+/usr/local/ssl/bin/openssl ecparam -genkey -name prime256v1 -out ecc_ca.key 
+/usr/local/ssl/bin/openssl req -key ecc_ca.key -new -out ecc_ca.req
+/usr/local/ssl/bin/openssl x509 -req -in ecc_ca.req -signkey ecc_ca.key -out ecc_ca.pem
+
+/usr/local/ssl/bin/openssl ecparam -genkey -name prime256v1 -out ecc_server.key 
+/usr/local/ssl/bin/openssl req -key ecc_server.key -new -out ecc_server.req
+/usr/local/ssl/bin/openssl x509 -req -in ecc_server.req -CA ecc_ca.pem -CAkey ecc_ca.key -out ecc_server.pem -CAcreateserial
+
+/usr/local/ssl/bin/openssl ecparam -genkey -name prime256v1 -out ecc_client.key 
+/usr/local/ssl/bin/openssl req -key ecc_client.key -new -out ecc_client.req
+/usr/local/ssl/bin/openssl x509 -req -in ecc_client.req -CA ecc_ca.pem -CAkey ecc_ca.key -out ecc_client.pem -CAcreateserial
 
 # to create DSA Certificate
 openssl dsaparam -genkey 512 -out dsa_ca_prikey.key
@@ -74,7 +80,7 @@ openssl verify -CAfile certself.pem certuser.pem
 
 #SSL握手
 openssl s_server -accept 2009 -key server_prikey.key -cert server_cert.pem
-openssl s_server -accept 2009 -key client_prikey.key -cert client_cert.pem
+openssl s_client -connect 192.168.41.122:443 -key ca.key -cert ca.pem -state -reconnect
 
 # TrustRoot
 LANG=en_US.UTF8 /usr/local/ssl/bin/openssl genrsa -out TrustRoot.key -sm4 -passout auto: 2048
@@ -110,10 +116,36 @@ LANG=en_US.UTF8 /usr/local/ssl/bin/openssl genrsa -out hehj.key -sm4 -passout au
 LANG=en_US.UTF8 /usr/local/ssl/bin/openssl req -key hehj.key -passin auto: -new -config hehj.cnf  -out hehj.req -sha1 -utf8
 LANG=en_US.UTF8 /usr/local/ssl/bin/openssl x509 -req -in hehj.req  -CA KoalCa.pem -CAkey KoalCa.key -CAserial KoalCa.srl -passin auto: -sha1 -days 1825 -out hehj.pem
 
-# TrustRoot.pem and TrustSM2Root.pem
+# 生成TrustRoot.pem，需准备TrustRoot.cnf
 /usr/local/ssl/bin/openssl req -newkey rsa:2048 -keyout TrustRoot.key -passout pass:"123456" -config TrustRoot.cnf -new -out TrustRoot.req
 /usr/local/ssl/bin/openssl req -x509 -newkey rsa:2048 -keyout TrustRoot.key -passout pass:"123456" -config TrustRoot.cnf -new -out TrustRoot.pem
-/usr/local/ssl/bin/openssl x509 -req -in TrustSM2Root.req -CA localca/TrustSM2Root.cer -CAkey localca/TrustSM2Root.key -out TrustSM2Root.cer -days 7300 -CAcreateserial
+
+/usr/local/ssl/bin/openssl x509 -req -in RSACert.req -CA localca/TrustRoot.cer -CAkey localca/TrustRoot.key -out RSACert.cer
+
+# 生成TrustSM2Root.pem，需准备TrustSM2Root.cnf
+/usr/local/ssl/bin/openssl ecparam -name CN-GM-ECC -noout -genkey -sm4 -passout auto: -out TrustSM2Root.key
+LANG=en_US.UTF8 /usr/local/ssl/bin/openssl req -key TrustSM2Root.key -passin auto: -new -config TrustSM2Root.cnf -out TrustSM2Root.req -sm3 -utf8
+/usr/local/ssl/bin/openssl x509 -req -in TrustSM2Root.req -signkey TrustSM2Root.key -passin auto: -out TrustSM2Root.pem
+
+/usr/local/ssl/bin/openssl x509 -req -in SM2Cert.req -CA localca/TrustSM2Root.cer -CAkey localca/TrustSM2Root.key -out SM2Cert.cer -days 7300 -CAcreateserial
+
+# 用当前证书生成CSR文件
+openssl x509 -x509toreq -in fd.crt -out fd.csr -signkey fd.key
 
 # training
 https://www.feistyduck.com/training/the-best-ssl-and-tls-training-in-the-world
+
+# Mozilla可信证书库及相关工具
+https://hg.mozilla.org/mozilla-central/raw-file/tip/security/nss/lib/ckfw/builtins/certdata.txt
+https://curl.haxx.se/docs/caextract.html
+https://github.com/gitter-badger/curl-1
+
+# 已编译好的Windows版本的OpenSSL
+https://slproweb.com/products/Win32OpenSSL.html
+
+# HTTPS权柄指南在线存储库
+https://github.com/ivanr/bulletproof-tls
+
+# p7签名/验签
+openssl smime -sign -inkey rsa_site_prikey.key -signer rsa_site_cert.pem -in acl.xml -out acl.p7a
+openssl smime -verify -noverify -signer rsa_site_cert.pem -in acl.p7a -out acl.xml

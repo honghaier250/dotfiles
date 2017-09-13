@@ -106,3 +106,6 @@ Ex Command
 :[range]move {address}
 :[range]join
 :[range]normal {commands}
+
+# plugin
+bash-support.vim

@@ -1,0 +1,11 @@
+# To retrieve all of the variables under system for host zeus
+snmpwalk -Os -c public -v 1 zeus system
+
+# To retrieve the scalar values, but omit the sysORTable for host zeus
+snmpwalk -Os -c public -v 1 -CE sysORTable zeus system
+
+# dskTotal
+snmpwalk -v 2c -c public 192.168.41.122 dskTotal
+
+# kernel
+snmpwalk -v 2c -c public 192.168.41.122 1.3.6.1.2.1.1.1

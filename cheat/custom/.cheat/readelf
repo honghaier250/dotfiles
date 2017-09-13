@@ -9,4 +9,4 @@ readelf -s string.o
 
 # Section content
 readelf -p SectionName string.o
-
+readelf -x SectionName string.o

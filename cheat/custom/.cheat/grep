@@ -39,3 +39,6 @@ grep -v '^$' input.txt > output.txt
 
 # delete blank lines
 grep -v '^\s*$' input.txt > output.txt
+
+# 
+grep -rin "5.2.4 SP6-170502" * | awk -F: '{print $1}'  | xargs sed -i "s/5.2.4 SP6-170502/5.2.4 SP6-170503/g"
