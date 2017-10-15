@@ -1,0 +1,3 @@
+# 设定时区
+sudo dpkg-reconfigure tzdata
+
