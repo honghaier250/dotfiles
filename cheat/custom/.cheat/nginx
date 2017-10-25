@@ -1,0 +1,5 @@
+# debug
+master_process off;
+daemon off;
+
+#

@@ -8,5 +8,6 @@ VBoxManage modifyvm ssl6-dev --nic3 bridged  --bridgeadapter3 "eth6"
 VBoxManage modifyvm ssl6-dev --nic4 bridged  --bridgeadapter4 "eth6"
 VBoxManage modifyvm ssl6-dev --nic5 none
 
-
+# modify disk serial
+VBoxManage setextradata ssl5.2.4 "VBoxInternal/Devices/piix3ide/0/Config/PrimaryMaster/SerialNumber" "string:00000000000000000001"
 #

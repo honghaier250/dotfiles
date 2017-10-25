@@ -1,0 +1,5 @@
+# motherboard
+sudo dmidecode -t 2
+
+# base address is other than 0x000000, mean hardware has support for IPMI.
+sudo dmidecode | grep -A 6 -i ipmi

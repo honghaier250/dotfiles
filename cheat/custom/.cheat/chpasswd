@@ -1,0 +1,2 @@
+# change password
+sudo echo "ssl:K0a120110601v6" | chpasswd
