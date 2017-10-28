@@ -1,0 +1,12 @@
+# http://www.toutiao.com/a6475825692213772814/
+
+# disk information
+sudo hdparm -i /dev/sdb
+sudo hdparm -I /dev/sdb
+
+# disk perf
+sudo hdparm -t /dev/sdb
+sudo hdparm -T /dev/sdb
+
+# disk readonly
+sudo hdparm -r 1 /dev/sdb

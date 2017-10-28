@@ -1,0 +1,1 @@
+TERM=vt100 watch -n 0.1 -d lsof -p 31856
