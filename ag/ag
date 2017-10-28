@@ -1,0 +1,3 @@
+ #!/bin/sh
+
+ grep -rin --color=auto --include='*.c' --include='*.h' $1 *

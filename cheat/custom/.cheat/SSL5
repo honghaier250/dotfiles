@@ -1,0 +1,12 @@
+# 开发环境
+apt-get install iproute xalan xalan zip unzip bzip2 ctags lrzsz automake subversion git-scm apache2-mpm-prefork rcconf libapache2-mod-php5 php5-cli php5-common php5-curl php5-dev php5-interbase php5-ldap php5-mcrypt php5-mysql php5-snmp php5-sqlite php5-xsl php-pear rsync
+
+# openssl debug
+
+ifdef debug
+OPENSSL_CFLAGS +=-g3
+endif
+
+sed -i "s/-O3//g" Makefile; \
+
+# crl

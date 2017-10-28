@@ -1,0 +1,23 @@
+set breakpoint pending on
+
+# 初始化
+b ngx_http_init_request
+
+# 连接处理
+b ngx_http_process_request_headers
+b ngx_http_process_request_line
+
+# 请求处理
+b ngx_http_process_request
+
+# 业务处理
+
+# 访问日志
+
+# SSL握手
+b ngx_http_ssl_handshake
+b ngx_ssl_handshake
+
+# 输入过滤链
+
+# 输出过滤链

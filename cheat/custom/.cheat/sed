@@ -16,8 +16,11 @@ sed '/^$/d' file.txt
 # To replace newlines in multiple lines
 sed ':a;N;$!ba;s/\n//g'  file.txt
 
-# 行尾追加（同行）
+# To print x-y line
+sed -n 'x,yp' file.txt
+
+# Append to end of same line
 sed -i "${line_number}s/$/$ $current_connection |${backend_service}/" file.txt
 
-# 合并空格
+# Merge multi-blank
 sed -i 's/[  ][  ]*/ /g' file.txt
