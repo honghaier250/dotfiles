@@ -1,0 +1,27 @@
+# CPU
+VBoxManage modifyvm "sag6.1.4" --x2apic off
+
+# 硬盘
+VBoxManage setextradata sag6.1.4 "VBoxInternal/Devices/piix3ide/0/Config/PrimaryMaster/SerialNumber" "string:00000000000000000001"
+
+# 内存
+VBoxManage modifyvm "sag6.1.4" --memory 2048
+
+# 显存
+VBoxManage modifyvm "sag6.1.4" --vram 40
+
+# 网卡
+VBoxManage modifyvm "sag6.1.4" --nic1 hostonly
+VBoxManage modifyvm "sag6.1.4" --natdnsproxy1 off
+
+# 虚拟化
+VBoxManage modifyvm "sag6.1.4" --paravirtprovider default
+
+# I/O APIC
+VBoxManage modifyvm "sag6.1.4" --ioapic off
+
+# UTC时钟
+VBoxManage modifyvm "sag6.1.4" --rtcuseutc off
+
+# 组
+VBoxManage modifyvm "sag6.1.4" --groups /ssl6

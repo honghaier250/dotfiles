@@ -63,3 +63,16 @@ tcpdump -X
 # - src net 67.207.148.0/24
 
 tcpdump -i any -e -n -X -s 0 -A -vvv host 127.0.0.1 and tcp port 443 -w capture.pcap
+
+# ip options
+tcpdump -i en0 'ip[0] & 0x0f > 5'
+
+# ip fragment
+tcpdump -i en0 '((ip[6:2] > 0) and (not ip[6] = 64))'
+
+# http get
+tcpdump -i en0 -A -n -e -s0 'tcp[32:4]=0x47455420'
+tcpdump -i en0 -A -n -e -s0 'tcp[(tcp[12]>>2):4] = 0x47455420'
+# http post
+tcpdump -i en0 -A -n -e -s0 'tcp[(tcp[12]>>2):4] = 0x504f5354'
+

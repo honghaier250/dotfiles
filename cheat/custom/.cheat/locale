@@ -1,0 +1,12 @@
+# 语言
+locale-gen zh_CN.GB18030
+locale-gen zh_CN.GB2312
+locale-gen zh_CN.UTF-8
+dpkg-reconfigure locales
+
+# 字体
+chmod 644 /usr/share/fonts/winfonts/*;
+mkfontscale
+mkfontdir
+fc-cache -fsv
+fc-list :lang=zh-cn

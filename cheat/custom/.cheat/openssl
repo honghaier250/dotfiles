@@ -26,7 +26,7 @@ openssl engine -vvvv dynamic \
 -pre ID:sample \
 -pre LOAD
 
-# to create RSA Certificate
+# to create RSA certificate
 openssl req -newkey rsa:1024 -keyout rsa_site_prikey.key -passout pass:"123456" -config siteOpenssl.cnf -new -out rsa_site_cert.req
 openssl req -x509 -newkey rsa:1024 -keyout rsa_ca_prikey.key -passout pass:"123456" -config caOpenssl.cnf -new -out rsa_ca_cert.pem
 openssl x509 -req -in rsa_site_cert.req -CA rsa_ca_cert.pem -CAkey rsa_ca_prikey.key -out rsa_site_cert.pem -CAcreateserial -days 365 -passin pass:"123456"
@@ -39,7 +39,7 @@ openssl genrsa -des -passout pass:"123456" -out rsa_site_prikey.key 1024
 openssl req -config siteOpenssl.cnf -key rsa_site_prikey.key -passin pass:"123456" -new -out rsa_site_cert.req
 openssl x509 -req -in rsa_site_cert.req -CA rsa_ca_cert.pem -CAkey rsa_ca_prikey.key -passin pass:"123456" -out rsa_site_cert.pem -CAcreateserial
 
-# to create ECC Certificate
+# to create ECC certificate
 openssl ecparam -genkey -name prime256v1 -out ecc_ca_prikey.key 
 openssl req -config caOpenssl.cnf -key ecc_ca_prikey.key -new -out ecc_ca_cert.req
 openssl x509 -req -in ecc_ca_cert.req -signkey ecc_ca_prikey.key -out ecc_ca_cert.pem
@@ -48,7 +48,7 @@ openssl ecparam -genkey -name prime256v1 -out ecc_site_prikey.key
 openssl req -config siteOpenssl.cnf -key ecc_site_prikey.key -new -out ecc_site_cert.req
 openssl x509 -req -in ecc_site_cert.req -CA ecc_ca_cert.pem -CAkey ecc_ca_prikey.key -out ecc_site_cert.pem -CAcreateserial
 
-# to create DSA Certificate
+# to create DSA certificate
 openssl dsaparam -genkey 512 -out dsa_ca_prikey.key
 openssl req -config caOpenssl.cnf -key dsa_ca_prikey.key -new -out dsa_ca_cert.req
 openssl x509 -req -in dsa_ca_cert.req -signkey dsa_ca_prikey.key -out dsa_ca_cert.pem
@@ -57,21 +57,24 @@ openssl dsaparam -genkey 512 -out dsa_site_prikey.key
 openssl req -config siteOpenssl.cnf -key dsa_site_prikey.key -new -out dsa_site_cert.req
 openssl x509 -req -in dsa_site_cert.req -CA dsa_ca_cert.pem -CAkey dsa_ca_prikey.key -out dsa_site_cert.pem -CAcreateserial
 
-#从证书中提取公钥
+# create crl
+openssl ca -revoke newcert.pem -keyfile demoCA/private/cakey.pem -passin pass:"123456" -cert demoCA/cacert.pem
+openssl ca -gencrl -utf8 -keyfile demoCA/private/cakey.pem -passin pass:"123456" -cert demoCA/cacert.pem -out newcrl.pem
+
+# extract public key
 openssl x509 -in site_cert.pem -pubkey -noout > site_pubkey.key
 
-#从证书中提取证书请求文件
+# extract certificate req
 openssl x509 -x509toreq -in site_cert.pem -out site_cert.req -signkey site_prikey.key -passin pass:"123456"
 
-# 去除私钥文件密码
-openssl rsa -in prikey.key -out prikey.key
-
-# # 证书格式转换
+# 证书格式转换
 openssl x509 -outform DER -in site_cert.der -out site_cert.pem
+openssl pkcs12 -in mysite.p12 -nokeys -passin pass:123456 -out mysite.pem
+openssl pkcs12 -in mysite.p12 -nocerts -passin pass:123456 -out mysite.key
 
-# to verify Certificate
+# to verify certificate
 openssl verify -CAfile certself.pem certuser.pem
 
-#SSL握手
-openssl s_server -accept 2009 -key server_prikey.key -cert server_cert.pem
-openssl s_server -accept 2009 -key client_prikey.key -cert client_cert.pem
+# ssl handshake
+openssl s_server -accept 2009 -key server.key -cert server.pem
+openssl s_client -connect 127.0.0.1:2009 -key client.key -cert client.pem
