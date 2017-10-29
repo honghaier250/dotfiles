@@ -1,0 +1,4 @@
+brew install cgdb
+brew install cheat
+brew install aria2
+brew install the_silver_searcher
