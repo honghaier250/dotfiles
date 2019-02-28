@@ -1,4 +1,4 @@
 #!/bin/sh
 
-ln -sf /root/.dotfiles/spf13-vim/custom/.vimrc.local ~/
-ln -sf /root/.dotfiles/spf13-vim/custom/.vimrc.bundles.local ~/
+ln -sf ~/.dotfiles/spf13-vim/custom/.vimrc.local ~/
+ln -sf ~/.dotfiles/spf13-vim/custom/.vimrc.bundles.local ~/

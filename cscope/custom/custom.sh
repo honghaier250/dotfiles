@@ -1,4 +1,3 @@
 #!/bin/sh
 
-cp -a /root/.dotfiles/cscope/custom/cscope_custom /usr/local/bin/
-
+cp -a ~/.dotfiles/cscope/custom/cscope_custom /usr/local/bin/
