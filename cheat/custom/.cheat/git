@@ -2,6 +2,7 @@
 git config --global user.name "hehongjie"
 git config --global user.email hehj@koal.com
 git config --global credential.helper store
+git config --global http.sslVerify false
 
 # To set your editor:
 git config --global core.editor vim
@@ -149,3 +150,6 @@ git tag -a v0.0.0.1
 git tag -d v0.0.0.1
 git show v0.0.0.1
 git push origin v0.0.0.1
+
+gst | grep -ri "类型变更" | awk  '{print $2}' | xargs git checkout  --
+gst | grep -ri "删除" | awk  '{print $2}' | xargs git rm

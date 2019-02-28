@@ -1,0 +1,23 @@
+find /cfg/NRP/ -name "protocol-http.conf.xslt" | xargs sed -i ''$(find /cfg/NRP/ -name "protocol-http.conf.xslt" | xargs grep -n "resolver_timeout" | head -n 1 | cut -d ":" -f 2)'aunderscores_in_headers on;\nignore_invalid_headers off;'
+find /cfg/NRP/ -name "protocol-http.conf" | xargs sed -i ''$(find /cfg/NRP/ -name "protocol-http.conf" | xargs grep -n "resolver_timeout" | head -n 1 | cut -d ":" -f 2)'aunderscores_in_headers on;\nignore_invalid_headers off;'
+
+#!/bin/sh
+
+alias cp='cp'
+
+cp /cfg/GAD/web/module/srv/nrp/advance_param.v.xml /cfg/GAD/web/module/srv/nrp/advance_param.v.xml.org
+iconv -t GBK -f UTF-8 /cfg/GAD/web/module/srv/nrp/advance_param.v.xml > /cfg/GAD/web/module/srv/nrp/advance_param.v.xml.gbk
+export LANG=GBK; sed -i ''$(expr 9 + `find  /cfg/GAD/web/module/srv/nrp -name "advance_param.v.xml" | xargs grep -n "http_compress" | head -n 1 | cut -d ":" -f 1`)'a\\t\t\t<field>\n\t\t\t\t<field-name>allow_underscores_in_http_header_name</field-name>\n\t\t\t\t<field-caption>允许HEADER使用下划线</field-caption>\n\t\t\t\t<field-wicket-type>\n\t\t\t\t\t<type>radio</type>\n\t\t\t\t\t<ref_type>resource</ref_type>\n\t\t\t\t\t<ref_name>advance_param</ref_name>\n\t\t\t\t\t<ref_key>switchoption</ref_key>\n\t\t\t\t\t<ref_delim>,</ref_delim>\n\t\t\t\t</field-wicket-type>\n\t\t\t</field>' /cfg/GAD/web/module/srv/nrp/advance_param.v.xml.gbk
+iconv -c -t UTF-8 -f GBK /cfg/GAD/web/module/srv/nrp/advance_param.v.xml.gbk > /cfg/GAD/web/module/srv/nrp/advance_param.v.xml
+rm -rf /cfg/GAD/web/module/srv/nrp/advance_param.v.xml.gbk
+
+sed -i "$(find /cfg/NRP/default/xslt/ -name "protocol-http.conf.xslt" | xargs grep -n "resolver_timeout" | head -n 1 | cut -d ":" -f 1)a<xsl:if test=\"allow_underscores_in_http_header_name=\'on\'\">\nunderscores_in_headers on;\nignore_invalid_headers off;\n</xsl:if>" /cfg/NRP/default/xslt/protocol-http.conf.xslt
+
+for cfg_dir in $(find /cfg/NRP -maxdepth 1 -mindepth 1 -type d); do
+    cp -f /cfg/NRP/default/xslt/protocol-http.conf.xslt $cfg_dir/xslt/
+    find ${cfg_dir} -name "advance.xml" | xargs sed -i ''$(find ${cfg_dir} -name "advance.xml" | xargs grep -n "gzip_types" | head -n 1 | cut -d ":" -f 1)'a\\t\t\t<allow_underscores_in_http_header_name>off</allow_underscores_in_http_header_name>'
+    find ${cfg_dir} -name "nrp.xml" | xargs sed -i ''$(find ${cfg_dir} -name "nrp.xml" | xargs grep -n "gzip_types" | head -n 1 | cut -d ":" -f 1)'a\\t\t\t<allow_underscores_in_http_header_name type="custom" target="advance" select="allow_underscores_in_http_header_name">off</allow_underscores_in_http_header_name>'
+done;
+
+alias cp='cp -i'
+

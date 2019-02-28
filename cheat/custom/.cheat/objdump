@@ -28,3 +28,5 @@ objdump -Slj .text obj
 # 对任意二进制文件进行反汇编
 objdump -D -b binary -m i386 a.bin
 
+# 查看段内容
+objdump -s -j SectionName string.o

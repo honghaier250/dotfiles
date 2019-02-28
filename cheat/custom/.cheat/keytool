@@ -1,0 +1,8 @@
+# 导入现有的x509证书和私钥到keystore
+ keytool -importkeystore -deststorepass "123456" -destkeypass "123456" -destkeystore server.keystore -srckeystore server.pfx -srcstoretype PKCS12 -srcstorepass "123456" -alias 1
+
+# 查看keystore
+keytool -list -storepass "123456" -keystore server.keystore
+
+# 创建证书链
+keytool -importcert -file ca.pem -alias 0 -keystore ca.keystore

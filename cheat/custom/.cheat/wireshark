@@ -1,0 +1,2 @@
+# 过滤HTTP有请求无响应的数据包
+http.request.method == "GET" && !http.response_in

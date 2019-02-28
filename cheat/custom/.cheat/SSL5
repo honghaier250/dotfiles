@@ -1,0 +1,37 @@
+# 开发环境
+apt-get install iproute xalan xalan zip unzip bzip2 ctags lrzsz automake subversion git-scm apache2-mpm-prefork rcconf libapache2-mod-php5 php5-cli php5-common php5-curl php5-dev php5-interbase php5-ldap php5-mcrypt php5-mysql php5-snmp php5-sqlite php5-xsl php-pear rsync
+
+# openssl debug
+
+ifdef debug
+OPENSSL_CFLAGS +=-g3
+endif
+
+sed -i "s/-O3//g" Makefile; \
+
+# crl
+
+# 升级常用脚本
+
+```
+
+#!/bin/bash
+
+# 添加配置
+find /kssl/HRP/cfg/ -name "proxy.conf.xml*" | xargs sed -i ''$(find /kssl/HRP/cfg/ -name "proxy.conf.xml*" | xargs grep -n "clientpolicy_update_freq"  | head -1 | cut -d ":" -f 2)'a\\t\t\t<clientpolicy><name>EnableSmartPA</name><value>NO</value></clientpolicy>'
+
+# 重新生成配置
+for cfg_dir in $(find /kssl/HRP/cfg -maxdepth 1 -mindepth 1 -type d| egrep -v "(default|global|htdoc)"); do
+    xalan -IN $cfg_dir/proxy.conf.xml -XSL /kssl/HRP/cfg/default/proxy.conf.xslt > $cfg_dir/proxy.conf
+done;
+
+# restart HRP, 对于不是通过PMonitor启动的，直接kill, 避免重启时发生端口占用现象
+ps -ef | grep -i "HPRd" | egrep -vq "grep";
+if [ $? -eq 0 ]; then
+    logger -p user.notice "[$0] stop all running HRPd.prefork";
+    killall -9 HRPd
+fi
+
+#/etc/init.d/hrp-monitors restart
+
+```

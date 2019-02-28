@@ -81,3 +81,31 @@ d{motion}       delete text that {motion} moves over
 
 将连续的两个空行替换成一个空行：
 :%s/\n\n/\r/g
+
+远程编辑
+vim scp://root@192.168.41.83//kssl/WEBUI/www/ssl/log_format.php
+
+重复上次substitute
+g&
+
+重复Ex命令
+@:
+
+用字符编码插入特殊字符
+ga
+<C-v>u{code}
+
+默认配置
+vim -u NONE -N
+
+Ex Command
+:[range]delete [x]
+:[range]yank [x]
+:[line]put [x]
+:[range]copy {address}
+:[range]move {address}
+:[range]join
+:[range]normal {commands}
+
+# plugin
+bash-support.vim
